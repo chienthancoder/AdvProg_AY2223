@@ -31,7 +31,7 @@ vector<string> filterWordsByLen(int wordLen, const vector<string> &vocabulary)
     // Write your code here
     for (auto x : vocabulary)
     {
-        if (wordlen == x.length())
+        if (wordLen == x.length())
             answer.push_back(x);
     }
     return answer;
@@ -136,9 +136,12 @@ bool isCorrectChar(char ch, const string &mask)
 {
     bool answer = 0;
     // Write your code here
-    if (mask.find(ch) != mask.end())
-        answer = 1;
-    return answer
+    for (int i = 0; i < mask.size(); i++)
+    {
+        if (mask[i] == ch)
+            return true;
+    }
+    return answer;
 }
 
 /***
@@ -151,10 +154,11 @@ bool isCorrectChar(char ch, const string &mask)
 ***/
 bool isWholeWord(const string &mask)
 {
-    bool answer = 0;
+    bool answer = 1;
     // Write your code here
-    if (mask.find('_') == mask.end())
-        answer = 1;
+    for (int i = 0; i < mask.length(); i++)
+        if (mask[i] == '_')
+            return false;
     return answer;
 }
 
